@@ -12,6 +12,7 @@ describe('CalculoComponent', () => {
   let component: CalculoComponent;
   let fixture: ComponentFixture<CalculoComponent>;
 
+  /* Se declaran los componentes y las importaciones que se utilizaron para hacer las pruebas */
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CalculoComponent, ResultadoComponent, FormularioComponent], 
@@ -24,6 +25,9 @@ describe('CalculoComponent', () => {
     fixture.detectChanges();
   });
 
+  /* prueba donde verificamos que se calculan correctamente los 10 numeros naturales
+      @ciclo tomamos los valores del 1 al 10 y se los asignamos a los metodos
+      @expect Verifica que el resultado actual sea igual al esperado*/
   it('calcular correctamente la serie para los primeros 10 números naturales', () => {
     const formularioComponent = fixture.debugElement.query(By.directive(FormularioComponent)).componentInstance;
 
@@ -37,16 +41,16 @@ describe('CalculoComponent', () => {
       } else {
         resultadoEsperado = (2 * 1 * component.triangular(i)) / component.fibonacci(i - 2);
       }
-
-      // Verifica que el resultado actual sea igual al esperado
       expect(component.resultadoSerie).toBe(resultadoEsperado);
     }
   });
 
+  /* prueba donde mostramos el valor del resultado
+      @expect Verifica que el valor sea lo que se espera*/
   it('mostrar el resultado en ResultadoComponent', () => {
     const resultadoComponent = fixture.debugElement.query(By.directive(ResultadoComponent)).componentInstance;
 
-    component.resultadoSerie = 9; //  ajustar el valor según lo que esperas
+    component.resultadoSerie = 9;
     fixture.detectChanges();
 
     expect(resultadoComponent.valorResultado).toBe(9);
