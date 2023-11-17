@@ -1,0 +1,15 @@
+<div class="card flex justify-content-center">
+    <form [formGroup]="formGroup">
+          <span class="p-float-label">
+            <p-inputNumber 
+            inputId="integeronly" 
+            formControlName="valor"
+            (keyup.enter)="introducirValor()"
+            [min]="1"
+            (ngModelChange)="actualizarResultado()"></p-inputNumber>
+            <label htmlFor="number-input">Ingrese el valor</label>
+        </span>
+    </form>
+    <p *ngIf="!formGroup.valid" class="mensaje">Debes de ingresar un valor</p>
+    <p *ngIf="formGroup.valid">serie({{formGroup.get('valor')?.value}}) = ( 2 * primo( {{formGroup.get('valor')?.value}} ) * triangular( {{formGroup.get('valor')?.value}} ) ) / fibonacci( {{formGroup.get('valor')?.value}} )</p>
+</div>
